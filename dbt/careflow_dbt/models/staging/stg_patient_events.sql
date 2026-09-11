@@ -1,12 +1,13 @@
-{{ config(materialized="table") }}
+SELECT
+    `case:concept:name` AS case_id,
+    `concept:name` AS activity,
+    `time:timestamp` AS event_timestamp,
+    `org:group` AS department,
+    Age AS age,
+    Diagnose AS diagnosis,
+    InfectionSuspected AS infection_suspected,
+    Leucocytes AS leucocytes,
+    CRP AS crp,
+    LacticAcid AS lactic_acid
 
-select
-    patient_id,
-    event_name,
-    event_time,
-    department,
-    visit_type,
-    priority,
-    wait_minutes
-from `careflow-analytics-506719.careflow_raw.patient_events`
-where patient_id is not null
+FROM `careflow-analytics-506719.careflow_raw.patient_events_clean`
